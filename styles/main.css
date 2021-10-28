@@ -31,8 +31,8 @@ header > div {
 main {
     background-color:var(--cor2);
     display: flex;
-    padding: 10px;
-    height: 512px;
+    padding: 5rem;
+    height: fit-content;
      
     justify-content: center;
     align-items: center;
@@ -81,33 +81,25 @@ a:focus {
     border-color:var(--cor2);
 }
 
-ul
-{
-    padding:0%;
-    list-style-type: none;
-    font-family: 'Festive', cursive;
-    background-color: var(--cor3t);
-    max-width:fit-content;
+main > div {
+    background-color: var(--cor1);
+    display:flex;
+    font-size: 2rem;
+    align-self:flex-start;
+    padding: 3rem;
+    font-family: var(--font2);
+    font-weight: bolder;
+    max-width: 400px;
 }
-ul > li 
-{
-    margin: 2rem;    
-    background-color: var(--cor1t);
-    font-size: 4rem;
-    color: var(--cor2t);
-    text-align: start;
-    padding: 2rem 2rem 2rem 8rem;
-    background-image: url("../images/YingYang.png");
-    background-position: 2rem 2rem;
-    background-size: 5rem 5rem;
-    background-repeat: no-repeat;
+
+main > div.desc {
+    display:none;
 }
 
 iframe {
     display:flex;
     overflow: none;
 }
-
 
 iframe.max {
     flex-grow: 1;

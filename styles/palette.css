@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
+
 html{
     font-size: 10px;
     --cinza: lightgray;
@@ -9,4 +11,5 @@ html{
     --cor2t: rgba(74, 207, 189, 0.486);
     --cor3t: #884acf6b;
     --gradient1: -webkit-linear-gradient(var(--cor2), var(--cor2t), var(--cor2));
+    --font2 : 'Inconsolata', monospace;
 }

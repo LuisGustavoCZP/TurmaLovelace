@@ -27,12 +27,16 @@
             </div>
             <nav>
                 <a onclick="OnChangeFrame(0)">Votação</a>
-                <a onclick="OnChangeFrame(1)">Grafico Tendencial</a>
-                <a onclick="OnChangeFrame(2)">Sugestões</a>
+                <a onclick="OnChangeFrame(1)">Grafico Simples</a>
+                <a onclick="OnChangeFrame(2)">Grafico Tendencial</a>
+                <a onclick="OnChangeFrame(3)">Sugestões</a>
             </nav>
         </header>
         <main>
+
+            <div id="descricao"></div>
             <iframe id="mainframe" frameborder="0" scrolling="no"></iframe>
+            
         </main>
         <footer>
             Todos os direitos reservados a OURPG.
@@ -40,8 +44,18 @@
         <script>
             var indiceFrame = 0;
             var mainframe = document.getElementById("mainframe"); 
+            var descricao = document.getElementById("descricao"); 
+
             var gsheetlinks = 
             [
+                {
+                    max : false,
+                    width : "510px",
+                    height : "1300px",
+                    descricao :"Uma votação destinada a sugerir um horario para a liberação dos exercicios e referencias da aula. Lembrando que o prazo maximo de 24h entre a liberação da aula e o encerramento da entrega de exercícios deve ser respeitado.",
+                    link :"https://docs.google.com/forms/d/e/1FAIpQLSf7MSCkpZozEygDQ1TTL3lzU6F4pLTD5Ac-VeuOVthLRQdXpg/viewform?embedded=false&chrome=false"
+                    
+                },
                 {
                     max : false,
                     width : "610px",
@@ -52,24 +66,23 @@
                     max : false,
                     width : "310px",
                     height : "380px",
+                    descricao : "Este gráfico mostra a tendência de votos através dos picos.",
                     link :"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubchart?oid=693454208&amp;format=interactive"   
                 },
                 {
                     max : true,
                     width : "10px",
-                    height : "auto",
+                    height : "1000px",
                     link :"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubhtml?gid=819187703&amp;single=true&amp;widget=false&amp;headers=false&chrome=false"
                 },
             ];
-            //
-            //"https://docs.google.com/forms/d/e/1FAIpQLSf7MSCkpZozEygDQ1TTL3lzU6F4pLTD5Ac-VeuOVthLRQdXpg/viewform?embedded=true",
-            //"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubhtml?gid=1208770726&amp;single=true&amp;widget=true&amp;headers=false",
-            
+
             function OnChangeFrame (index) 
             {
                 indiceFrame = index; 
                 let frame = gsheetlinks[indiceFrame];
                 mainframe.src = frame.link;
+                
                 if(frame.max)
                 {
                     if(!mainframe.classList.contains("max")) mainframe.classList.add("max");
@@ -78,6 +91,17 @@
                 {
                     if(mainframe.classList.contains("max")) mainframe.classList.remove("max");
                 }
+
+                if(frame.descricao != undefined)
+                {
+                    descricao.innerText = frame.descricao;
+                    if(descricao.classList.contains("desc")) descricao.classList.remove("desc");
+                } 
+                else 
+                {
+                    if(!descricao.classList.contains("desc")) descricao.classList.add("desc");
+                }
+                
                 mainframe.height = frame.height;
                 mainframe.width = frame.width;
             }
