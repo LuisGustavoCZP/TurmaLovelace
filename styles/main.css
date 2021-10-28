@@ -35,6 +35,7 @@ main {
     height: 512px;
      
     justify-content: center;
+    align-items: center;
 }
 h1{
     max-width:fit-content;
@@ -110,4 +111,5 @@ iframe {
 
 iframe.max {
     flex-grow: 1;
+    align-self: stretch;
 }
