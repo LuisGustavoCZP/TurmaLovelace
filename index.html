@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Aula 21 - Votação Lovelace</title>
+        <meta property="og:title" content="Resultado da Votação - Lovelace" />
+        <meta property="og:description" content="Projeto criado para uma votação da turma Lovelace da AlphaEdTech." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="images/lovelacelogo.png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+        
+        <link rel="stylesheet" href="styles/palette.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
+
+        <script src="scripts/loadobject.js"></script>
+        <script src="scripts/googlesheetdata.js"></script>
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1>Lovelace</h1>
+                <h4>Site destinado a turma Lovelace</h4>
+            </div>
+            <nav>
+                <a onclick="OnChangeFrame(0)">Votação</a>
+                <a onclick="OnChangeFrame(1)">Grafico Tendencial</a>
+                <a onclick="OnChangeFrame(2)">Sugestões</a>
+            </nav>
+        </header>
+        <main>
+            <iframe id="mainframe" frameborder="0"></iframe>
+        </main>
+        <footer>
+            Todos os direitos reservados a OURPG.
+        </footer>
+        <script>
+            var indiceFrame = 0;
+            var mainframe = document.getElementById("mainframe"); 
+            var gsheetlinks = 
+            [
+                {
+                    max : false,
+                    width : "610px",
+                    height : "380px",
+                    link :"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubchart?oid=1328399861&amp;format=interactive"   
+                },
+                {
+                    max : false,
+                    width : "610px",
+                    height : "380px",
+                    link :"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubchart?oid=693454208&amp;format=interactive"   
+                },
+                {
+                    max : true,
+                    width : "10px",
+                    height : "auto",
+                    link :"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubhtml?gid=819187703&amp;single=true&amp;widget=false&amp;headers=false&chrome=false"
+                },
+            ];
+            //
+            //"https://docs.google.com/forms/d/e/1FAIpQLSf7MSCkpZozEygDQ1TTL3lzU6F4pLTD5Ac-VeuOVthLRQdXpg/viewform?embedded=true",
+            //"https://docs.google.com/spreadsheets/d/e/2PACX-1vQimoXabtbl90O-l0ydyUlMulE2Dcve9lwRKtEDM4zm9oOVTIb3prjE4lpXmNNxpwFgX55nBFNgszcV/pubhtml?gid=1208770726&amp;single=true&amp;widget=true&amp;headers=false",
+            
+            function OnChangeFrame (index) 
+            {
+                indiceFrame = index; 
+                let frame = gsheetlinks[indiceFrame];
+                mainframe.src = frame.link;
+                if(frame.max)
+                {
+                    if(!mainframe.classList.contains("max")) mainframe.classList.add("max");
+                }
+                else
+                {
+                    if(mainframe.classList.contains("max")) mainframe.classList.remove("max");
+                }
+                mainframe.height = frame.height;
+                mainframe.width = frame.width;
+            }
+
+            function OnLoadFrame (){
+                
+                
+            }
+
+            mainframe.onload=OnLoadFrame;
+
+            OnChangeFrame(indiceFrame);
+
+        </script>
+    </body>
+</html>
